@@ -1,0 +1,45 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.3.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+group 'HotStock'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+war {
+    archiveName 'ROOT.war'
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+    compile('org.springframework.boot:spring-boot-starter-data-rest')
+    compileOnly 'org.projectlombok:lombok:1.16.12'
+    compile group: 'org.yaml', name: 'snakeyaml', version: '1.8'
+    compile 'joda-time:joda-time:2.9.7'
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.3'
+}
+
